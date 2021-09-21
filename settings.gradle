@@ -8,3 +8,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "ULessonAssessment"
 include ':app'
+include ':core'
+include ':base'
+include ':gui'
+include ':network'
