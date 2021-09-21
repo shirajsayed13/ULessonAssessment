@@ -5,7 +5,7 @@ import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
 @HiltAndroidApp
-internal class ULessonAssessment : Application() {
+internal class ULessonAssessmentApp : Application() {
 
     init {
         if (BuildConfig.DEBUG) {
