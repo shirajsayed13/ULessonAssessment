@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.34791666666666665" />
+        <entry key="gui/src/main/res/drawable/ic_circle.xml" value="0.36822916666666666" />
         <entry key="gui/src/main/res/layout/activity_ulesson_assessment.xml" value="0.34791666666666665" />
         <entry key="gui/src/main/res/layout/fragment_my_lesson.xml" value="0.34791666666666665" />
+        <entry key="gui/src/main/res/layout/item_live_tag.xml" value="0.34791666666666665" />
       </map>
     </option>
   </component>

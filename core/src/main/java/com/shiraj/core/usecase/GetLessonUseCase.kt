@@ -8,6 +8,7 @@ class GetLessonUseCase @Inject constructor(
     private val lessonWS: LessonWS
 ) {
     suspend operator fun invoke(): List<PromotedLesson> {
+        println("CHECK THIS invoke")
         return lessonWS.getLessonWS()
     }
 }

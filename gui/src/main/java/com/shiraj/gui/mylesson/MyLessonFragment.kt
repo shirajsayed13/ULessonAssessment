@@ -1,6 +1,7 @@
 package com.shiraj.gui.mylesson
 
 import android.view.LayoutInflater
+import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -16,6 +17,7 @@ import com.shiraj.gui.R
 import com.shiraj.gui.databinding.FragmentMyLessonBinding
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MyLessonFragment : BaseFragment() {
@@ -29,19 +31,32 @@ class MyLessonFragment : BaseFragment() {
     override val binding: FragmentMyLessonBinding
         get() = super.binding as FragmentMyLessonBinding
 
+    @Inject
+    internal lateinit var myLessonAdapter: MyLessonAdapter
 
     private val viewModel: MyLessonViewModel by viewModels()
 
     override fun onInitView() {
         viewModel.apply {
+            println("CHECK THIS onInitView")
             failure(failure, ::handleFailure)
             observe(lesson, ::showLesson)
-            loadLessonUseCase()
+            loadLesson()
+            setupRecyclerView()
         }
+    }
+
+
+    private fun setupRecyclerView() = with(binding.rvMyLesson) {
+        println("CHECK THIS setupRecyclerView")
+        setHasFixedSize(true)
+        adapter = myLessonAdapter
     }
 
     private fun showLesson(list: List<PromotedLesson>) {
         println("CHECK THIS showLesson $list")
+        myLessonAdapter.myLessons = list
+        binding.pbLoading.visibility = GONE
     }
 
 

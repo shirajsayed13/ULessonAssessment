@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:layout_margin="12dp"
+    android:padding="8dp"
+    app:cardCornerRadius="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/ivTutorPic"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+
+        <TextView
+            android:id="@+id/tvLive"
+            android:layout_width="60dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/bg_live"
+            android:gravity="center"
+            android:padding="2dp"
+            android:paddingStart="6dp"
+            android:paddingEnd="2dp"
+            android:text="@string/live"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:drawableStartCompat="@drawable/ic_circle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/tvSubject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:drawablePadding="4dp"
+                android:padding="8dp"
+                android:text="@string/physics"
+                android:textColor="@color/blueColor"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toTopOf="@+id/tvTiming"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/tvTiming"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawablePadding="4dp"
+                android:padding="4dp"
+                android:text="@string/timing"
+                android:textColor="@color/blueColor"
+                android:textSize="12sp"
+                app:drawableStartCompat="@drawable/ic_access_time"
+                app:drawableTint="#313848"
+                app:layout_constraintBottom_toTopOf="@+id/tvModuleTitle"
+                app:layout_constraintStart_toStartOf="@+id/tvSubject"
+                app:layout_constraintTop_toBottomOf="@+id/tvSubject" />
+
+            <TextView
+                android:id="@+id/tvModuleTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                android:padding="4dp"
+                android:text="@string/module_title"
+                android:textColor="@color/blueColor"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvSubject"
+                app:layout_constraintTop_toBottomOf="@+id/tvTiming" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

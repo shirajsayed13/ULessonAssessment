@@ -6,18 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".ULessonAssessmentActivity">
 
-    <TextView
-        android:id="@+id/tvCityName"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMyLesson"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:spanCount="4"
+        tools:listitem="@layout/tile_lesson" />
+
+    <ProgressBar
+        android:id="@+id/pbLoading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/roboto_thin"
-        android:text="Bangalore"
-        android:textColor="#FF556799"
-        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
