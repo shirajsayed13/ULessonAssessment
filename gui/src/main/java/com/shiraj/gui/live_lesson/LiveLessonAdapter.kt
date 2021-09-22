@@ -2,10 +2,8 @@ package com.shiraj.gui.live_lesson
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.shiraj.core.model.PromotedLesson
-import com.shiraj.gui.databinding.TileLessonBinding
 import com.shiraj.gui.databinding.TileLiveLessonBinding
 import com.shiraj.gui.loadUrl
 import dagger.hilt.android.scopes.FragmentScoped
@@ -13,7 +11,10 @@ import javax.inject.Inject
 import kotlin.properties.Delegates
 
 @FragmentScoped
-internal class LiveLessonAdapter @Inject constructor(): RecyclerView.Adapter<LiveLessonAdapter.CarouselBannerVH>() {
+internal class LiveLessonAdapter @Inject constructor() :
+    RecyclerView.Adapter<LiveLessonAdapter.CarouselBannerVH>() {
+
+    internal var onLessonClickListener: (PromotedLesson) -> Unit = {}
 
     var myLessons: List<PromotedLesson> by Delegates.observable(emptyList()) { _, _, _ ->
         notifyDataSetChanged()
@@ -21,7 +22,11 @@ internal class LiveLessonAdapter @Inject constructor(): RecyclerView.Adapter<Liv
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = CarouselBannerVH(
         TileLiveLessonBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-    )
+    ).apply {
+        itemView.setOnClickListener {
+            onLessonClickListener(myLessons[adapterPosition])
+        }
+    }
 
     override fun onBindViewHolder(holder: CarouselBannerVH, position: Int) {
         holder.bind(myLessons[position])

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
+import com.google.android.material.snackbar.Snackbar
 import com.shiraj.base.failure
 import com.shiraj.base.fragment.BaseFragment
 import com.shiraj.base.observe
@@ -16,7 +17,6 @@ import com.shiraj.core.webservice.WebServiceFailure
 import com.shiraj.gui.AppToast
 import com.shiraj.gui.R
 import com.shiraj.gui.databinding.FragmentLiveLessonBinding
-import com.shiraj.gui.live_lesson.carousel.CarouselBannersAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import javax.inject.Inject
@@ -44,6 +44,11 @@ internal class LiveLessonFragment : BaseFragment() {
             observe(lesson, ::showLesson)
             loadLesson()
             setupRecyclerView()
+        }
+
+        liveLessonAdapter.onLessonClickListener = { lesson ->
+            if (lesson.status.equals("live", true))
+                showSnackbar(lesson.topic)
         }
 
         binding.apply {
@@ -81,6 +86,14 @@ internal class LiveLessonFragment : BaseFragment() {
 
     private fun Fragment.showErrorToast(msg: String) {
         AppToast.show(requireContext(), msg, Toast.LENGTH_SHORT)
+    }
+
+    internal fun showSnackbar(message: String) {
+        Snackbar.make(
+            requireActivity().findViewById(android.R.id.content),
+            message,
+            Snackbar.LENGTH_SHORT
+        ).show()
     }
 
 }
