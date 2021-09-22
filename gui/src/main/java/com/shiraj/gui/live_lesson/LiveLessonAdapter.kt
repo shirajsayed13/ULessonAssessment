@@ -1,5 +1,6 @@
 package com.shiraj.gui.live_lesson
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -43,6 +44,17 @@ internal class LiveLessonAdapter @Inject constructor() :
                 tvLive.text = carouselBanner.status
                 tvModuleTitle.text = carouselBanner.topic
                 tvSubject.text = carouselBanner.subject
+                when {
+                    carouselBanner.status.equals("live", true) -> {
+                        tvLive.setBackgroundColor(Color.parseColor("#DA0000"))
+                    }
+                    carouselBanner.status.equals("upcoming", true) -> {
+                        tvLive.setBackgroundColor(Color.parseColor("#606572"))
+                    }
+                    carouselBanner.status.equals("replay", true) -> {
+                        tvLive.setBackgroundColor(Color.parseColor("#F2984D"))
+                    }
+                }
             }
         }
     }

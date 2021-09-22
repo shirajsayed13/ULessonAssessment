@@ -1,5 +1,6 @@
 package com.shiraj.gui.mylesson
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -12,7 +13,8 @@ import javax.inject.Inject
 import kotlin.properties.Delegates
 
 @FragmentScoped
-internal class MyLessonAdapter @Inject constructor(): RecyclerView.Adapter<MyLessonAdapter.CarouselBannerVH>() {
+internal class MyLessonAdapter @Inject constructor() :
+    RecyclerView.Adapter<MyLessonAdapter.CarouselBannerVH>() {
 
     var myLessons: List<PromotedLesson> by Delegates.observable(emptyList()) { _, _, _ ->
         notifyDataSetChanged()
@@ -36,6 +38,17 @@ internal class MyLessonAdapter @Inject constructor(): RecyclerView.Adapter<MyLes
                 tvModuleTitle.text = carouselBanner.topic
                 tvSubject.text = carouselBanner.subject
                 tvLive.text = carouselBanner.status
+                when {
+                    carouselBanner.status.equals("live", true) -> {
+                        tvLive.setBackgroundColor(Color.parseColor("#DA0000"))
+                    }
+                    carouselBanner.status.equals("upcoming", true) -> {
+                        tvLive.setBackgroundColor(Color.parseColor("#606572"))
+                    }
+                    carouselBanner.status.equals("replay", true) -> {
+                        tvLive.setBackgroundColor(Color.parseColor("#F2984D"))
+                    }
+                }
             }
         }
     }

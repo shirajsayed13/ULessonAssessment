@@ -10,7 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         android:background="@drawable/bg_rounded_card"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +21,6 @@
             android:layout_width="124dp"
             android:layout_height="182dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
@@ -33,9 +32,9 @@
             android:layout_marginStart="20dp"
             android:layout_marginBottom="12dp"
             android:background="@drawable/bg_live"
+            android:drawablePadding="4dp"
             android:gravity="center"
             android:padding="2dp"
-            android:drawablePadding="4dp"
             android:paddingStart="6dp"
             android:paddingEnd="2dp"
             android:text="@string/live"
@@ -51,7 +50,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginBottom="36dp"
             android:ellipsize="end"
             android:text="@string/module_title"
@@ -66,7 +64,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginBottom="20dp"
             android:drawablePadding="4dp"
             android:padding="2dp"
