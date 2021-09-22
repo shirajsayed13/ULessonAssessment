@@ -86,6 +86,7 @@ dependencies {
     androidTestImplementation testDependencies.testRunner
     androidTestImplementation testDependencies.testRules
     androidTestImplementation testDependencies.navTesting
+    androidTestImplementation testDependencies.coroutinesTest
 
     kaptAndroidTest testDependencies.hiltCompiler
     implementation "androidx.core:core-ktx:1.6.0"
