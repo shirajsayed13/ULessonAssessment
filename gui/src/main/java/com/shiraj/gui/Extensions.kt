@@ -8,6 +8,7 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import java.text.SimpleDateFormat
 import java.util.*
 
 internal fun ImageView.loadUrl(
@@ -41,4 +42,10 @@ internal fun ImageView.loadUrl(
     })
         .into(this)
 
+}
+
+internal fun formatDate(date: String): String {
+    val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+    val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
+    return formatter.format(parser.parse(date))
 }

@@ -38,6 +38,7 @@ internal class MyLessonAdapter @Inject constructor() :
                 tvModuleTitle.text = carouselBanner.topic
                 tvSubject.text = carouselBanner.subject
                 tvLive.text = carouselBanner.status
+                tvTiming.text = carouselBanner.createdAt
                 when {
                     carouselBanner.status.equals("live", true) -> {
                         tvLive.setBackgroundColor(Color.parseColor("#DA0000"))

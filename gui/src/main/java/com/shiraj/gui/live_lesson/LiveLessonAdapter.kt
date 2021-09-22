@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.shiraj.core.model.PromotedLesson
 import com.shiraj.gui.databinding.TileLiveLessonBinding
+import com.shiraj.gui.formatDate
 import com.shiraj.gui.loadUrl
 import dagger.hilt.android.scopes.FragmentScoped
 import javax.inject.Inject
@@ -42,8 +43,10 @@ internal class LiveLessonAdapter @Inject constructor() :
                 ivTutorPic.loadUrl(carouselBanner.imageUrl)
                 ivTutorPic.clipToOutline = true
                 tvLive.text = carouselBanner.status
+                tvTiming.text = formatDate(carouselBanner.createdAt)
                 tvModuleTitle.text = carouselBanner.topic
                 tvSubject.text = carouselBanner.subject
+                tvTutorName.text = carouselBanner.tutor
                 when {
                     carouselBanner.status.equals("live", true) -> {
                         tvLive.setBackgroundColor(Color.parseColor("#DA0000"))

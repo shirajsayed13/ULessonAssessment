@@ -9,6 +9,7 @@ data class PromotedLesson(
     val startAt: String,
     val status: String,
     val subject: String,
-    val topic: String
+    val topic: String,
+    val tutor: String
 )
 

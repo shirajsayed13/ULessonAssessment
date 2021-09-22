@@ -38,7 +38,6 @@ class MyLessonFragment : BaseFragment() {
 
     override fun onInitView() {
         viewModel.apply {
-            println("CHECK THIS onInitView")
             failure(failure, ::handleFailure)
             observe(lesson, ::showLesson)
             loadLesson()
@@ -48,13 +47,11 @@ class MyLessonFragment : BaseFragment() {
 
 
     private fun setupRecyclerView() = with(binding.rvMyLesson) {
-        println("CHECK THIS setupRecyclerView")
         setHasFixedSize(true)
         adapter = myLessonAdapter
     }
 
     private fun showLesson(list: List<PromotedLesson>) {
-        println("CHECK THIS showLesson $list")
         myLessonAdapter.myLessons = list
         binding.pbLoading.visibility = GONE
     }
