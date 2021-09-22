@@ -2,7 +2,6 @@ package com.shiraj.gui.mylesson
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.shiraj.core.model.PromotedLesson
 import com.shiraj.gui.R
@@ -65,20 +64,5 @@ internal class MyLessonAdapter @Inject constructor() :
                 }
             }
         }
-    }
-
-    class PromotedLessonDiffUtil(
-        private val new: List<PromotedLesson>,
-        private val old: List<PromotedLesson>
-    ) : DiffUtil.Callback() {
-        override fun getOldListSize() = old.size
-
-        override fun getNewListSize() = new.size
-
-        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) =
-            new[newItemPosition] == old[oldItemPosition]
-
-        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) =
-            new[newItemPosition].id == old[oldItemPosition].id
     }
 }

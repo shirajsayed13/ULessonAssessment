@@ -2,6 +2,8 @@ package com.shiraj.gui.live_lesson.carousel
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.shiraj.core.model.PromotedLesson
 import com.shiraj.gui.R
@@ -10,13 +12,26 @@ import com.shiraj.gui.formatDate
 import com.shiraj.gui.loadUrl
 import dagger.hilt.android.scopes.FragmentScoped
 import javax.inject.Inject
-import kotlin.properties.Delegates
 
 @FragmentScoped
 internal class LessonCarouselAdapter @Inject constructor() :
     RecyclerView.Adapter<LessonCarouselAdapter.CarouselBannerVH>() {
 
-    internal var banners: List<PromotedLesson> by Delegates.observable(arrayListOf()) { _, _, _ -> notifyDataSetChanged() }
+    private val diffCallback = object : DiffUtil.ItemCallback<PromotedLesson>() {
+        override fun areItemsTheSame(oldItem: PromotedLesson, newItem: PromotedLesson): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItem: PromotedLesson, newItem: PromotedLesson): Boolean {
+            return oldItem.id == newItem.id
+        }
+    }
+
+    private val differ = AsyncListDiffer(this, diffCallback)
+
+    var banners: List<PromotedLesson>
+        get() = differ.currentList
+        set(value) = differ.submitList(value)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = CarouselBannerVH(
         TileCorouselBinding.inflate(LayoutInflater.from(parent.context), parent, false)
