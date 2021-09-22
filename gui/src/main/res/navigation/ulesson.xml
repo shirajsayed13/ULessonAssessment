@@ -14,7 +14,7 @@
         android:id="@+id/liveLessonFragment"
         android:name="com.shiraj.gui.live_lesson.LiveLessonFragment"
         android:label="LiveLessonFragment"
-        tools:layout="@layout/fragment_live_lesson" >
+        tools:layout="@layout/fragment_live_lesson">
         <action
             android:id="@+id/to_myLessonFragment"
             app:destination="@id/myLessonFragment" />

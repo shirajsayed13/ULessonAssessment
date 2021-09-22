@@ -66,6 +66,7 @@ internal class LiveLessonFragment : BaseFragment() {
             fab.setOnClickListener {
                 findNavController().navigate(LiveLessonFragmentDirections.toMyLessonFragment())
             }
+            toolbar.setNavigationOnClickListener { requireActivity().finish() }
         }
     }
 

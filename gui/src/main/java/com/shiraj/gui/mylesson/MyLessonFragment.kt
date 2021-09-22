@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.shiraj.base.failure
 import com.shiraj.base.fragment.BaseFragment
@@ -43,6 +44,8 @@ class MyLessonFragment : BaseFragment() {
             loadLessonsMe()
             setupRecyclerView()
         }
+
+        binding.toolbar.setNavigationOnClickListener { findNavController().popBackStack() }
     }
 
 
