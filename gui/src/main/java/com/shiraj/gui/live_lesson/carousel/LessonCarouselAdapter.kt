@@ -4,7 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.shiraj.core.model.PromotedLesson
+import com.shiraj.gui.R
 import com.shiraj.gui.databinding.TileCorouselBinding
+import com.shiraj.gui.formatDate
 import com.shiraj.gui.loadUrl
 import dagger.hilt.android.scopes.FragmentScoped
 import javax.inject.Inject
@@ -33,6 +35,31 @@ internal class LessonCarouselAdapter @Inject constructor() :
                 ivTutorPic.loadUrl(carouselBanner.imageUrl)
                 tvModuleTitle.text = carouselBanner.topic
                 tvTutorName.text = carouselBanner.subject
+                tvTiming.text = formatDate(carouselBanner.createdAt)
+                tvLive.text = carouselBanner.status
+                when {
+                    carouselBanner.status.equals("live", true) -> {
+                        tvLive.setBackgroundResource(R.drawable.bg_live)
+                    }
+                    carouselBanner.status.equals("upcoming", true) -> {
+                        tvLive.setCompoundDrawablesWithIntrinsicBounds(
+                            R.drawable.ic_calendar_today,
+                            0,
+                            0,
+                            0
+                        );
+                        tvLive.setBackgroundResource(R.drawable.bg_upcoming)
+                    }
+                    carouselBanner.status.equals("replay", true) -> {
+                        tvLive.setCompoundDrawablesWithIntrinsicBounds(
+                            R.drawable.ic_play_arrow,
+                            0,
+                            0,
+                            0
+                        );
+                        tvLive.setBackgroundResource(R.drawable.bg_replay)
+                    }
+                }
             }
         }
     }

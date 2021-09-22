@@ -10,5 +10,7 @@
     <color name="textCl">#FFFFFF</color>
     <color name="bgColor">#7B7FDA</color>
     <color name="liveColor">#DA0000</color>
+    <color name="replay_color">#F2984D</color>
+    <color name="upcoming_color">#606572</color>
     <color name="blueColor">#313848</color>
 </resources>

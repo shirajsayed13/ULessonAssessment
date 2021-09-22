@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.shiraj.core.model.PromotedLesson
+import com.shiraj.gui.R
 import com.shiraj.gui.databinding.TileLessonBinding
 import com.shiraj.gui.loadUrl
 import dagger.hilt.android.scopes.FragmentScoped
@@ -41,13 +42,25 @@ internal class MyLessonAdapter @Inject constructor() :
                 tvTiming.text = carouselBanner.createdAt
                 when {
                     carouselBanner.status.equals("live", true) -> {
-                        tvLive.setBackgroundColor(Color.parseColor("#DA0000"))
+                        tvLive.setBackgroundResource(R.drawable.bg_live)
                     }
                     carouselBanner.status.equals("upcoming", true) -> {
-                        tvLive.setBackgroundColor(Color.parseColor("#606572"))
+                        tvLive.setCompoundDrawablesWithIntrinsicBounds(
+                            R.drawable.ic_calendar_today,
+                            0,
+                            0,
+                            0
+                        );
+                        tvLive.setBackgroundResource(R.drawable.bg_upcoming)
                     }
                     carouselBanner.status.equals("replay", true) -> {
-                        tvLive.setBackgroundColor(Color.parseColor("#F2984D"))
+                        tvLive.setCompoundDrawablesWithIntrinsicBounds(
+                            R.drawable.ic_play_arrow,
+                            0,
+                            0,
+                            0
+                        );
+                        tvLive.setBackgroundResource(R.drawable.bg_replay)
                     }
                 }
             }
