@@ -4,22 +4,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.shiraj.base.viewmodel.BaseViewModel
 import com.shiraj.core.model.PromotedLesson
-import com.shiraj.core.usecase.GetLessonUseCase
+import com.shiraj.core.usecase.GetLessonsMeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class MyLessonViewModel @Inject constructor(
-    private val lessonUseCase: GetLessonUseCase
+    private val lessonsMeUseCase: GetLessonsMeUseCase
 ): BaseViewModel() {
 
-    private val _lesson: MutableLiveData<List<PromotedLesson>> by lazy { MutableLiveData() }
-    internal val lesson: LiveData<List<PromotedLesson>> = _lesson
+    private val _lessonsMe: MutableLiveData<List<PromotedLesson>> by lazy { MutableLiveData() }
+    internal val lessonsMe: LiveData<List<PromotedLesson>> = _lessonsMe
 
-    internal fun loadLesson() {
-        println("CHECK THIS loadLesson")
+    internal fun loadLessonsMe() {
         launchUseCase {
-            _lesson.postValue(lessonUseCase())
+            _lessonsMe.postValue(lessonsMeUseCase())
         }
     }
 }

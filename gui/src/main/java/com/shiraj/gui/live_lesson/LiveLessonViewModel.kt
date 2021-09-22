@@ -19,7 +19,6 @@ class LiveLessonViewModel @Inject constructor(
     internal val promote: LiveData<List<PromotedLesson>> = _promote
 
     internal fun loadPromote() {
-        println("CHECK THIS loadLesson")
         launchUseCase {
             _promote.postValue(promoteUseCase())
         }
@@ -29,7 +28,6 @@ class LiveLessonViewModel @Inject constructor(
     internal val lesson: LiveData<List<PromotedLesson>> = _lesson
 
     internal fun loadLesson() {
-        println("CHECK THIS loadLesson")
         launchUseCase {
             _lesson.postValue(lessonUseCase())
         }

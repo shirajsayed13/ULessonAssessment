@@ -36,28 +36,28 @@ internal class LessonCarouselAdapter @Inject constructor() :
                 tvModuleTitle.text = carouselBanner.topic
                 tvTutorName.text = carouselBanner.subject
                 tvTiming.text = formatDate(carouselBanner.createdAt)
-                tvLive.text = carouselBanner.status
+                tvStatus.text = carouselBanner.status
                 when {
                     carouselBanner.status.equals("live", true) -> {
-                        tvLive.setBackgroundResource(R.drawable.bg_live)
+                        tvStatus.setBackgroundResource(R.drawable.bg_live)
                     }
                     carouselBanner.status.equals("upcoming", true) -> {
-                        tvLive.setCompoundDrawablesWithIntrinsicBounds(
+                        tvStatus.setCompoundDrawablesWithIntrinsicBounds(
                             R.drawable.ic_calendar_today,
                             0,
                             0,
                             0
                         );
-                        tvLive.setBackgroundResource(R.drawable.bg_upcoming)
+                        tvStatus.setBackgroundResource(R.drawable.bg_upcoming)
                     }
                     carouselBanner.status.equals("replay", true) -> {
-                        tvLive.setCompoundDrawablesWithIntrinsicBounds(
+                        tvStatus.setCompoundDrawablesWithIntrinsicBounds(
                             R.drawable.ic_play_arrow,
                             0,
                             0,
                             0
                         );
-                        tvLive.setBackgroundResource(R.drawable.bg_replay)
+                        tvStatus.setBackgroundResource(R.drawable.bg_replay)
                     }
                 }
             }

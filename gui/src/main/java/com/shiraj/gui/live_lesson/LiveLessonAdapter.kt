@@ -14,7 +14,7 @@ import kotlin.properties.Delegates
 
 @FragmentScoped
 internal class LiveLessonAdapter @Inject constructor() :
-    RecyclerView.Adapter<LiveLessonAdapter.CarouselBannerVH>() {
+    RecyclerView.Adapter<LiveLessonAdapter.LiveLessonVH>() {
 
     internal var onLessonClickListener: (PromotedLesson) -> Unit = {}
 
@@ -22,7 +22,7 @@ internal class LiveLessonAdapter @Inject constructor() :
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = CarouselBannerVH(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = LiveLessonVH(
         TileLiveLessonBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     ).apply {
         itemView.setOnClickListener {
@@ -30,44 +30,44 @@ internal class LiveLessonAdapter @Inject constructor() :
         }
     }
 
-    override fun onBindViewHolder(holder: CarouselBannerVH, position: Int) {
+    override fun onBindViewHolder(holder: LiveLessonVH, position: Int) {
         holder.bind(myLessons[position])
     }
 
     override fun getItemCount(): Int = myLessons.size
 
-    inner class CarouselBannerVH(private val binding: TileLiveLessonBinding) :
+    inner class LiveLessonVH(private val binding: TileLiveLessonBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(carouselBanner: PromotedLesson) {
             binding.apply {
                 ivTutorPic.loadUrl(carouselBanner.imageUrl)
                 ivTutorPic.clipToOutline = true
-                tvLive.text = carouselBanner.status
+                tvStatus.text = carouselBanner.status
                 tvTiming.text = formatDate(carouselBanner.createdAt)
                 tvModuleTitle.text = carouselBanner.topic
                 tvSubject.text = carouselBanner.subject
                 tvTutorName.text = carouselBanner.tutor
                 when {
                     carouselBanner.status.equals("live", true) -> {
-                        tvLive.setBackgroundResource(R.drawable.bg_live)
+                        tvStatus.setBackgroundResource(R.drawable.bg_live)
                     }
                     carouselBanner.status.equals("upcoming", true) -> {
-                        tvLive.setCompoundDrawablesWithIntrinsicBounds(
+                        tvStatus.setCompoundDrawablesWithIntrinsicBounds(
                             R.drawable.ic_calendar_today,
                             0,
                             0,
                             0
                         );
-                        tvLive.setBackgroundResource(R.drawable.bg_upcoming)
+                        tvStatus.setBackgroundResource(R.drawable.bg_upcoming)
                     }
                     carouselBanner.status.equals("replay", true) -> {
-                        tvLive.setCompoundDrawablesWithIntrinsicBounds(
+                        tvStatus.setCompoundDrawablesWithIntrinsicBounds(
                             R.drawable.ic_play_arrow,
                             0,
                             0,
                             0
                         );
-                        tvLive.setBackgroundResource(R.drawable.bg_replay)
+                        tvStatus.setBackgroundResource(R.drawable.bg_replay)
                     }
                 }
             }
