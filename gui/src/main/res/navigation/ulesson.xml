@@ -3,11 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ulesson"
-    app:startDestination="@id/myLessonFragment">
+    app:startDestination="@id/liveLessonFragment">
 
     <fragment
         android:id="@+id/myLessonFragment"
         android:name="com.shiraj.gui.mylesson.MyLessonFragment"
-        android:label="fragment_my_lesson"
+        android:label="MyLessonFragment"
         tools:layout="@layout/fragment_my_lesson" />
+    <fragment
+        android:id="@+id/liveLessonFragment"
+        android:name="com.shiraj.gui.live_lesson.LiveLessonFragment"
+        android:label="LiveLessonFragment"
+        tools:layout="@layout/fragment_live_lesson" >
+        <action
+            android:id="@+id/to_myLessonFragment"
+            app:destination="@id/myLessonFragment" />
+    </fragment>
 </navigation>

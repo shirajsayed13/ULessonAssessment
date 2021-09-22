@@ -4,10 +4,17 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.34791666666666665" />
+        <entry key="gui/src/main/res/drawable-v24/bg_rounded_card.xml" value="0.36822916666666666" />
+        <entry key="gui/src/main/res/drawable/ic_calendar_today.xml" value="0.36822916666666666" />
         <entry key="gui/src/main/res/drawable/ic_circle.xml" value="0.36822916666666666" />
+        <entry key="gui/src/main/res/drawable/ic_fab_circle.xml" value="0.36822916666666666" />
         <entry key="gui/src/main/res/layout/activity_ulesson_assessment.xml" value="0.34791666666666665" />
+        <entry key="gui/src/main/res/layout/fragment_live_lesson.xml" value="0.34791666666666665" />
         <entry key="gui/src/main/res/layout/fragment_my_lesson.xml" value="0.34791666666666665" />
         <entry key="gui/src/main/res/layout/item_live_tag.xml" value="0.34791666666666665" />
+        <entry key="gui/src/main/res/layout/tile_corousel.xml" value="0.1578125" />
+        <entry key="gui/src/main/res/layout/tile_lesson.xml" value="0.33" />
+        <entry key="gui/src/main/res/layout/tile_live_lesson.xml" value="0.34791666666666665" />
       </map>
     </option>
   </component>
