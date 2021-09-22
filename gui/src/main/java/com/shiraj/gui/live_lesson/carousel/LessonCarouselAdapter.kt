@@ -6,10 +6,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.shiraj.core.model.PromotedLesson
 import com.shiraj.gui.databinding.TileCorouselBinding
 import com.shiraj.gui.loadUrl
+import dagger.hilt.android.scopes.FragmentScoped
+import javax.inject.Inject
 import kotlin.properties.Delegates
 
-internal class CarouselBannersAdapter :
-    RecyclerView.Adapter<CarouselBannersAdapter.CarouselBannerVH>() {
+@FragmentScoped
+internal class LessonCarouselAdapter @Inject constructor() :
+    RecyclerView.Adapter<LessonCarouselAdapter.CarouselBannerVH>() {
 
     internal var banners: List<PromotedLesson> by Delegates.observable(arrayListOf()) { _, _, _ -> notifyDataSetChanged() }
 

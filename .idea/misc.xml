@@ -12,7 +12,7 @@
         <entry key="gui/src/main/res/layout/fragment_live_lesson.xml" value="0.34791666666666665" />
         <entry key="gui/src/main/res/layout/fragment_my_lesson.xml" value="0.34791666666666665" />
         <entry key="gui/src/main/res/layout/item_live_tag.xml" value="0.34791666666666665" />
-        <entry key="gui/src/main/res/layout/tile_corousel.xml" value="0.1578125" />
+        <entry key="gui/src/main/res/layout/tile_corousel.xml" value="0.375" />
         <entry key="gui/src/main/res/layout/tile_lesson.xml" value="0.33" />
         <entry key="gui/src/main/res/layout/tile_live_lesson.xml" value="0.34791666666666665" />
       </map>

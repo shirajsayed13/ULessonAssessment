@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
+import androidx.viewpager2.widget.CompositePageTransformer
+import androidx.viewpager2.widget.MarginPageTransformer
 import com.google.android.material.snackbar.Snackbar
 import com.shiraj.base.failure
 import com.shiraj.base.fragment.BaseFragment
@@ -17,9 +19,11 @@ import com.shiraj.core.webservice.WebServiceFailure
 import com.shiraj.gui.AppToast
 import com.shiraj.gui.R
 import com.shiraj.gui.databinding.FragmentLiveLessonBinding
+import com.shiraj.gui.live_lesson.carousel.LessonCarouselAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import javax.inject.Inject
+import kotlin.math.abs
 
 @AndroidEntryPoint
 internal class LiveLessonFragment : BaseFragment() {
@@ -37,6 +41,9 @@ internal class LiveLessonFragment : BaseFragment() {
 
     @Inject
     internal lateinit var liveLessonAdapter: LiveLessonAdapter
+
+    @Inject
+    internal lateinit var lessonCarouselAdapter: LessonCarouselAdapter
 
     override fun onInitView() {
         viewModel.apply {
@@ -61,10 +68,29 @@ internal class LiveLessonFragment : BaseFragment() {
     private fun setupRecyclerView() = with(binding.rvMyLesson) {
         setHasFixedSize(true)
         adapter = liveLessonAdapter
+        binding.apply {
+            vpCarousel.apply {
+                adapter = lessonCarouselAdapter
+                clipToPadding = false
+                clipChildren = false
+                offscreenPageLimit = 3
+                setPageTransformer(CompositePageTransformer().apply {
+                    addTransformer(
+                        MarginPageTransformer(
+                            resources.getDimension(R.dimen.home_carousel_banner_margin).toInt()
+                        )
+                    )
+                    addTransformer { page, position ->
+                        page.scaleY = 0.85f + (1 - abs(position)) * 0.15f
+                    }
+                })
+            }
+        }
     }
 
     private fun showLesson(list: List<PromotedLesson>) {
         liveLessonAdapter.myLessons = list
+        lessonCarouselAdapter.banners = list
         binding.pbLoading.visibility = View.GONE
     }
 
