@@ -26,14 +26,29 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 internal object NetworkModule {
 
+    private external fun baseUrlFromJNI(): String
+
+    @Provides
+    internal fun provideBaseUrl(): String {
+
+        object {
+            init {
+                System.loadLibrary("network")
+            }
+        }
+        return baseUrlFromJNI()
+    }
+
+
     @Provides
     @Singleton
     internal fun provideRetrofit(
         builder: Retrofit.Builder,
         okHttpClient: OkHttpClient,
+        baseUrlFromJNI: String
     ): Retrofit {
         return builder
-            .baseUrl("https://mock-live-lessons.herokuapp.com/api/v1/")
+            .baseUrl(baseUrlFromJNI)
             .addConverterFactory(MoshiConverterFactory.create())
             .client(okHttpClient)
             .build()
