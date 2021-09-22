@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.snackbar.Snackbar
 import com.shiraj.base.failure
 import com.shiraj.base.fragment.BaseFragment
@@ -92,6 +93,49 @@ internal class LiveLessonFragment : BaseFragment() {
         liveLessonAdapter.myLessons = list
         lessonCarouselAdapter.banners = list
         binding.pbLoading.visibility = View.GONE
+    }
+
+    private val actionSwitchLessonCarousel: Runnable = Runnable {
+        binding.vpCarousel.apply {
+            currentItem = if (currentItem == lessonCarouselAdapter.banners.size - 1) 0 else currentItem + 1
+        }
+        scheduleCarouselBannerSwitch()
+    }
+
+    private val carouselPageChangeCallback: ViewPager2.OnPageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
+        override fun onPageScrollStateChanged(state: Int) {
+            when (state) {
+                ViewPager2.SCROLL_STATE_IDLE -> scheduleCarouselBannerSwitch()
+                else -> binding.vpCarousel.removeCallbacks(actionSwitchLessonCarousel)
+            }
+        }
+    }
+
+    override fun onPause() {
+        binding.vpCarousel.apply {
+            removeCallbacks(actionSwitchLessonCarousel)
+            unregisterOnPageChangeCallback(carouselPageChangeCallback)
+        }
+        super.onPause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        scheduleCarouselBannerSwitch()
+        binding.vpCarousel.apply {
+            registerOnPageChangeCallback(carouselPageChangeCallback)
+        }
+    }
+
+    private fun scheduleCarouselBannerSwitch() {
+        binding.vpCarousel.apply {
+            removeCallbacks(actionSwitchLessonCarousel)
+            postDelayed(actionSwitchLessonCarousel, BANNER_SWITCH_TIME_MS)
+        }
+    }
+
+    companion object {
+        const val BANNER_SWITCH_TIME_MS = 5000L
     }
 
 

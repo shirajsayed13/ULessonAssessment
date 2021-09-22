@@ -39,6 +39,8 @@ internal class LiveLessonAdapter @Inject constructor() :
         fun bind(carouselBanner: PromotedLesson) {
             binding.apply {
                 ivTutorPic.loadUrl(carouselBanner.imageUrl)
+                ivTutorPic.clipToOutline = true
+                tvLive.text = carouselBanner.status
                 tvModuleTitle.text = carouselBanner.topic
                 tvSubject.text = carouselBanner.subject
             }

@@ -11,26 +11,28 @@
         android:id="@+id/ivTutorPic"
         android:layout_width="120dp"
         android:layout_height="80dp"
+        android:background="@drawable/bg_tutor_profile_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvLive"
-        android:layout_width="60dp"
+        android:layout_width="wrap_content"
         android:layout_height="24dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/bg_live"
+        android:drawablePadding="4dp"
         android:gravity="center"
-        android:padding="2dp"
-        android:paddingStart="6dp"
-        android:paddingEnd="2dp"
+        android:padding="4dp"
+        android:paddingStart="2dp"
+        android:paddingEnd="4dp"
         android:text="@string/live"
         android:textAllCaps="true"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="12sp"
         app:drawableStartCompat="@drawable/ic_circle"
         app:layout_constraintBottom_toBottomOf="@+id/ivTutorPic"
         app:layout_constraintStart_toStartOf="@+id/ivTutorPic" />
@@ -51,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:drawablePadding="4dp"
-            android:padding="8dp"
+            android:padding="2dp"
             android:text="@string/physics"
             android:textColor="@color/blueColor"
             android:textSize="11sp"
@@ -64,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="8dp"
-            android:padding="4dp"
+            android:padding="2dp"
             android:text="@string/module_title"
             android:textColor="@color/blueColor"
             android:textSize="16sp"
@@ -74,12 +76,13 @@
             app:layout_constraintTop_toBottomOf="@+id/tvSubject" />
 
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTiming"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:drawablePadding="4dp"
-            android:padding="4dp"
+            android:gravity="center"
+            android:padding="2dp"
             android:text="@string/timing"
             android:textColor="@color/blueColor"
             android:textSize="12sp"
@@ -88,20 +91,20 @@
             app:layout_constraintStart_toStartOf="@+id/tvSubject"
             app:layout_constraintTop_toBottomOf="@+id/tvModuleTitle" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTutorName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:layout_marginBottom="20dp"
             android:drawablePadding="4dp"
+            android:gravity="center"
             android:padding="2dp"
-            android:paddingStart="2dp"
-            android:paddingEnd="2dp"
             android:text="@string/gabriella"
             android:textColor="@color/blueColor"
             android:textSize="11sp"
-            app:drawableStartCompat="@drawable/ic_separator_circle"
+            app:drawableStartCompat="@drawable/ic_person"
+            app:drawableTint="#313848"
             app:layout_constraintStart_toStartOf="@+id/tvSubject"
             app:layout_constraintTop_toBottomOf="@+id/tvTiming" />
 

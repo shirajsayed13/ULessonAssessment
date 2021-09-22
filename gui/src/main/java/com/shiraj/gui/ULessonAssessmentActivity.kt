@@ -1,6 +1,5 @@
 package com.shiraj.gui
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.core.content.ContextCompat
@@ -23,8 +22,6 @@ internal class ULessonAssessmentActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.statusBarColor = ContextCompat.getColor(this, android.R.color.transparent)
-        }
+        window.statusBarColor = ContextCompat.getColor(this, android.R.color.transparent)
     }
 }

@@ -35,6 +35,7 @@ internal class MyLessonAdapter @Inject constructor(): RecyclerView.Adapter<MyLes
                 ivTutorPic.loadUrl(carouselBanner.imageUrl)
                 tvModuleTitle.text = carouselBanner.topic
                 tvSubject.text = carouselBanner.subject
+                tvLive.text = carouselBanner.status
             }
         }
     }

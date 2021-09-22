@@ -8,7 +8,9 @@
     <application>
         <activity
             android:name=".ULessonAssessmentActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
