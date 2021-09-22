@@ -59,7 +59,7 @@
             app:layout_constraintEnd_toStartOf="@+id/ivTutorPic"
             app:layout_constraintStart_toStartOf="@+id/tvLive" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTiming"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -79,10 +79,10 @@
             android:id="@+id/tvTutorName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="20dp"
             android:drawablePadding="8dp"
+            android:ellipsize="end"
             android:padding="2dp"
             android:paddingStart="2dp"
             android:paddingEnd="2dp"

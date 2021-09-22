@@ -6,5 +6,11 @@ import retrofit2.http.GET
 internal interface RetrofitLessonWebService {
 
     @GET("promoted")
-    suspend fun fetchPromotedLesson(): PromoteLessonResponse
+    suspend fun fetchPromoted(): PromoteLessonResponse
+
+    @GET("lessons")
+    suspend fun fetchLessons(): PromoteLessonResponse
+
+    @GET("lessons/me")
+    suspend fun fetchLessonsMe(): PromoteLessonResponse
 }

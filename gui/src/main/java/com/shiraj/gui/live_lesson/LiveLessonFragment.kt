@@ -50,7 +50,10 @@ internal class LiveLessonFragment : BaseFragment() {
         viewModel.apply {
             failure(failure, ::handleFailure)
             observe(lesson, ::showLesson)
+            observe(promote, ::showPromote)
             loadLesson()
+            loadPromote()
+            setupPromoteCarousel()
             setupRecyclerView()
         }
 
@@ -66,50 +69,54 @@ internal class LiveLessonFragment : BaseFragment() {
         }
     }
 
+    private fun showPromote(promotes: List<PromotedLesson>) {
+        lessonCarouselAdapter.banners = promotes
+    }
+
     private fun setupRecyclerView() = with(binding.rvMyLesson) {
         setHasFixedSize(true)
         adapter = liveLessonAdapter
-        binding.apply {
-            vpCarousel.apply {
-                adapter = lessonCarouselAdapter
-                clipToPadding = false
-                clipChildren = false
-                offscreenPageLimit = 3
-                setPageTransformer(CompositePageTransformer().apply {
-                    addTransformer(
-                        MarginPageTransformer(
-                            resources.getDimension(R.dimen.home_carousel_banner_margin).toInt()
-                        )
-                    )
-                    addTransformer { page, position ->
-                        page.scaleY = 0.85f + (1 - abs(position)) * 0.15f
-                    }
-                })
-            }
-        }
     }
 
-    private fun showLesson(list: List<PromotedLesson>) {
-        liveLessonAdapter.myLessons = list
-        lessonCarouselAdapter.banners = list
+    private fun setupPromoteCarousel() = with(binding.vpCarousel) {
+        adapter = lessonCarouselAdapter
+        clipToPadding = false
+        clipChildren = false
+        offscreenPageLimit = 3
+        setPageTransformer(CompositePageTransformer().apply {
+            addTransformer(
+                MarginPageTransformer(
+                    resources.getDimension(R.dimen.home_carousel_banner_margin).toInt()
+                )
+            )
+            addTransformer { page, position ->
+                page.scaleY = 0.85f + (1 - abs(position)) * 0.15f
+            }
+        })
+    }
+
+    private fun showLesson(lessons: List<PromotedLesson>) {
+        liveLessonAdapter.myLessons = lessons
         binding.pbLoading.visibility = View.GONE
     }
 
     private val actionSwitchLessonCarousel: Runnable = Runnable {
         binding.vpCarousel.apply {
-            currentItem = if (currentItem == lessonCarouselAdapter.banners.size - 1) 0 else currentItem + 1
+            currentItem =
+                if (currentItem == lessonCarouselAdapter.banners.size - 1) 0 else currentItem + 1
         }
         scheduleCarouselBannerSwitch()
     }
 
-    private val carouselPageChangeCallback: ViewPager2.OnPageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
-        override fun onPageScrollStateChanged(state: Int) {
-            when (state) {
-                ViewPager2.SCROLL_STATE_IDLE -> scheduleCarouselBannerSwitch()
-                else -> binding.vpCarousel.removeCallbacks(actionSwitchLessonCarousel)
+    private val carouselPageChangeCallback: ViewPager2.OnPageChangeCallback =
+        object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageScrollStateChanged(state: Int) {
+                when (state) {
+                    ViewPager2.SCROLL_STATE_IDLE -> scheduleCarouselBannerSwitch()
+                    else -> binding.vpCarousel.removeCallbacks(actionSwitchLessonCarousel)
+                }
             }
         }
-    }
 
     override fun onPause() {
         binding.vpCarousel.apply {

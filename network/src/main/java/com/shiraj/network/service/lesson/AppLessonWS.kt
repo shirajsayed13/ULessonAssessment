@@ -10,8 +10,18 @@ internal class AppLessonWS @Inject constructor(
     private val lessonWebService: RetrofitLessonWebService
 ) : LessonWS {
 
-    override suspend fun getLessonWS(): List<PromotedLesson> = networkCall(
-        { lessonWebService.fetchPromotedLesson() },
+    override suspend fun getPromoteWS(): List<PromotedLesson> = networkCall(
+        { lessonWebService.fetchPromoted() },
+        { response -> response.data.map { it.toPromoteLesson() } }
+    )
+
+    override suspend fun getLessonsWS(): List<PromotedLesson> = networkCall(
+        { lessonWebService.fetchLessons() },
+        { response -> response.data.map { it.toPromoteLesson() } }
+    )
+
+    override suspend fun getLessonsMeWS(): List<PromotedLesson> = networkCall(
+        { lessonWebService.fetchLessonsMe() },
         { response -> response.data.map { it.toPromoteLesson() } }
     )
 }

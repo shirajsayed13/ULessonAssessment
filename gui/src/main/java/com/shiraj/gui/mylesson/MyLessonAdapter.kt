@@ -1,6 +1,5 @@
 package com.shiraj.gui.mylesson
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.shiraj.core.model.PromotedLesson
 import com.shiraj.gui.R
 import com.shiraj.gui.databinding.TileLessonBinding
+import com.shiraj.gui.formatDate
 import com.shiraj.gui.loadUrl
 import dagger.hilt.android.scopes.FragmentScoped
 import javax.inject.Inject
@@ -39,7 +39,7 @@ internal class MyLessonAdapter @Inject constructor() :
                 tvModuleTitle.text = carouselBanner.topic
                 tvSubject.text = carouselBanner.subject
                 tvLive.text = carouselBanner.status
-                tvTiming.text = carouselBanner.createdAt
+                tvTiming.text = formatDate(carouselBanner.createdAt)
                 when {
                     carouselBanner.status.equals("live", true) -> {
                         tvLive.setBackgroundResource(R.drawable.bg_live)

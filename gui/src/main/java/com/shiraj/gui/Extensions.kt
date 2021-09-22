@@ -46,6 +46,6 @@ internal fun ImageView.loadUrl(
 
 internal fun formatDate(date: String): String {
     val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
-    val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
+    val formatter = SimpleDateFormat("dd.MM hh:mm a", Locale.getDefault())
     return formatter.format(parser.parse(date))
 }
